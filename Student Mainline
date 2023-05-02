@@ -1,0 +1,22 @@
+# By (Your name)
+# 05/01/2023
+# Program #1: Student Display
+# This program displays the student information.
+
+# Import Sqlite3
+import sqlite3
+
+# Connect to the student database.
+connection = sqlite3.connect("student.db")
+
+# Connect to the cursor.
+cursor = connection.cursor()
+
+# Print the student info.
+cursor.execute('SELECT * FROM student_info')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+# Close the connection.
+connection.close()
