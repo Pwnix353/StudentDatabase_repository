@@ -1,16 +1,43 @@
-# By (Your name)
+# By Tyler Ledbetter (Yellow Team)
 # 05/01/2023
 # Program #1: Student Display
 # This program displays the student information.
 
-# Import Sqlite3
+# Import Things
 import sqlite3
+import tkinter as tk
 
 # Connect to the student database.
 connection = sqlite3.connect("student.db")
 
 # Connect to the cursor.
 cursor = connection.cursor()
+
+# Initialize GUI
+root = tk.Tk()
+root.title('Student Database')
+
+# Initialize GUI Variables
+cursor.execute('SELECT student_first_name FROM student_info')
+first_names = cursor.fetchall()
+name_list = [' '.join(t) for t in first_names]
+var = tk.Variable(value=name_list)
+
+# Organize Frames
+entry_frame = tk.Frame(root)
+list_frame = tk.Frame(root)
+list_frame.pack()
+
+# Listbox Frame
+listbox = tk.Listbox(list_frame, listvariable=var, height=12, selectmode=tk.BROWSE)
+listbox.pack()
+
+# Entry Frame
+
+
+
+# Mainloop
+tk.mainloop()
 
 # Print the student info.
 cursor.execute('SELECT * FROM student_info')
